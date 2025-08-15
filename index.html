@@ -240,6 +240,7 @@
       .approval-screen {
         display: none;
         text-align: center;
+        animation: fadeIn 1s ease-out;
       }
 
       .approval-screen.active {
@@ -250,89 +251,191 @@
         display: none;
       }
 
-      .checkmark {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 2rem;
-        border: 3px solid #2ed8a7;
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, rgba(46, 216, 167, 0.2), rgba(46, 216, 167, 0.1));
+        border: 1px solid rgba(46, 216, 167, 0.4);
+        padding: 12px 24px;
+        border-radius: 50px;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        color: #2ed8a7;
+        font-weight: 600;
+        box-shadow: 0 0 20px rgba(46, 216, 167, 0.2);
+      }
+
+      .status-icon {
+        width: 16px;
+        height: 16px;
+        background: #2ed8a7;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        animation: pulse 2s infinite;
+        animation: pulse-dot 2s infinite;
       }
 
-      .checkmark svg {
-        width: 40px;
-        height: 40px;
-        fill: #2ed8a7;
-      }
-
-      @keyframes pulse {
-        0% {
+      @keyframes pulse-dot {
+        0%, 100% {
           box-shadow: 0 0 0 0 rgba(46, 216, 167, 0.7);
         }
-        70% {
-          box-shadow: 0 0 0 20px rgba(46, 216, 167, 0);
+        50% {
+          box-shadow: 0 0 0 8px rgba(46, 216, 167, 0);
         }
-        100% {
-          box-shadow: 0 0 0 0 rgba(46, 216, 167, 0);
-        }
+      }
+
+      .status-icon::after {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: black;
+        border-radius: 50%;
       }
 
       .approval-title {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: #2ed8a7;
-        text-shadow: 0 0 10px rgba(46, 216, 167, 0.5);
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: white;
+        line-height: 1.2;
       }
 
-      .approval-message {
-        font-size: 1.2rem !important;
-        color: rgba(255, 255, 255, 0.8) !important;
-        margin-bottom: 2rem !important;
-        font-style: normal !important;
-        text-transform: none !important;
-        letter-spacing: normal !important;
-        line-height: 1.6 !important;
-      }
-
-      .approval-steps {
-        background: rgba(46, 216, 167, 0.1);
-        border: 1px solid rgba(46, 216, 167, 0.3);
-        border-radius: 16px;
-        padding: 2rem;
-        margin: 2rem 0;
-        text-align: left;
-      }
-
-      .approval-steps h3 {
-        color: #2ed8a7;
-        margin-bottom: 1rem;
+      .approval-subtitle {
         font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 3rem;
+        font-style: normal;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.5;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .approval-steps ul {
-        list-style: none;
-        padding: 0;
+      .beta-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .approval-steps li {
-        color: rgba(255, 255, 255, 0.8);
-        margin-bottom: 0.8rem;
-        padding-left: 1.5rem;
+      .beta-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: left;
+        transition: all 0.3s ease;
         position: relative;
+        overflow: hidden;
+      }
+
+      .beta-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #2ed8a7, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .beta-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(46, 216, 167, 0.3);
+        box-shadow: 0 10px 40px rgba(46, 216, 167, 0.1);
+      }
+
+      .beta-card:hover::before {
+        opacity: 1;
+      }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #2ed8a7, #1db584);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .card-icon svg {
+        width: 24px;
+        height: 24px;
+        fill: black;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+        color: white;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .card-description {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.5;
         font-style: normal;
         text-transform: none;
         letter-spacing: normal;
       }
 
-      .approval-steps li:before {
-        content: "✓";
+      .card-link {
         color: #2ed8a7;
-        position: absolute;
-        left: 0;
-        font-weight: bold;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .card-link:hover {
+        color: #34e6b5;
+        text-decoration: underline;
+      }
+
+      .beta-timeline {
+        background: rgba(46, 216, 167, 0.05);
+        border: 1px solid rgba(46, 216, 167, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem auto;
+        max-width: 600px;
+        text-align: left;
+      }
+
+      .timeline-title {
+        color: #2ed8a7;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .timeline-icon {
+        width: 20px;
+        height: 20px;
+        fill: #2ed8a7;
+      }
+
+      .timeline-description {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+        line-height: 1.6;
+        font-style: normal;
+        text-transform: none;
+        letter-spacing: normal;
       }
 
       .socials {
@@ -525,26 +628,65 @@
       <!-- Approval Waiting Screen -->
       <div id="approval-screen" class="approval-screen">
         <div class="beta-content">
-          <div class="checkmark">
-            <svg viewBox="0 0 24 24">
-              <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
-            </svg>
+          <div class="status-badge">
+            <div class="status-icon"></div>
+            Beta Access Requested
           </div>
-          <h2 class="approval-title">Welcome to <span class="highlight">BAPT</span> Beta!</h2>
-          <p class="approval-message">
-            You've taken the first step toward testing BAPT.app before public release.
-          </p>
-          <p class="approval-message">
+          
+          <h2 class="approval-title">You've taken the first step toward testing <span class="highlight">BAPT.app</span> before public release.</h2>
+          
+          <p class="approval-subtitle">
             Our beta will roll out in waves to ensure smooth onboarding and feedback collection. Once approved, you'll receive a direct invite with instructions to start exploring.
           </p>
-          
-          <div class="approval-steps">
-            <h3>In the meantime, you can:</h3>
-            <ul>
-              <li>Follow our updates on <a href="https://x.com/BAPTApp" style="color: #2ed8a7; text-decoration: none;">Twitter/X</a> and <a href="https://t.me/BAPTLabs" style="color: #2ed8a7; text-decoration: none;">Telegram</a></li>
-              <li>Prepare your wallet with testnet $APT</li>
-              <li>Get ready to experience a new shift in token economies in action</li>
-            </ul>
+
+          <div class="beta-cards">
+            <div class="beta-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </div>
+              <h3 class="card-title">Follow Our Updates</h3>
+              <p class="card-description">
+                Stay connected on <a href="https://x.com/BAPTApp" class="card-link">Twitter/X</a> and join our <a href="https://t.me/BAPTLabs" class="card-link">Telegram community</a> for the latest announcements and beta invites.
+              </p>
+            </div>
+
+            <div class="beta-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3 class="card-title">Prepare Your Wallet</h3>
+              <p class="card-description">
+                Get ready with testnet $APT in your wallet. We'll guide you through the setup process once you're approved for beta access.
+              </p>
+            </div>
+
+            <div class="beta-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <h3 class="card-title">New Token Economy</h3>
+              <p class="card-description">
+                Get ready to experience a new shift in token economies in action. BAPT brings composable tokens to Aptos like never before.
+              </p>
+            </div>
+          </div>
+
+          <div class="beta-timeline">
+            <h3 class="timeline-title">
+              <svg class="timeline-icon" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              What's Next?
+            </h3>
+            <p class="timeline-description">
+              Beta invites will be sent in waves. Priority access goes to early supporters and active community members. Once approved, you'll receive detailed onboarding instructions and early access to exclusive features.
+            </p>
           </div>
         </div>
       </div>
