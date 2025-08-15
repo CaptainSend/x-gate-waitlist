@@ -177,6 +177,152 @@
         animation-delay: 2.5s;
       }
 
+      .beta-content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .beta-description {
+        font-style: normal !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
+        font-size: 1.1rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 2rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
+
+      .beta-cta-btn {
+        background: linear-gradient(135deg, #2ed8a7, #1db584);
+        color: black;
+        font-weight: bold;
+        padding: 18px 36px;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        box-shadow: 0 0 20px rgba(46, 216, 167, 0.4), 0 8px 32px rgba(46, 216, 167, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 auto;
+        transform: translateY(0);
+      }
+
+      .beta-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(46, 216, 167, 0.6), 0 12px 40px rgba(46, 216, 167, 0.3);
+        background: linear-gradient(135deg, #34e6b5, #20c791);
+      }
+
+      .beta-details {
+        font-size: 0.9rem !important;
+        margin-top: 1.5rem !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+        font-style: normal !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
+      }
+
+      .approval-screen {
+        display: none;
+        text-align: center;
+      }
+
+      .approval-screen.active {
+        display: block;
+      }
+
+      .signup-screen.hidden {
+        display: none;
+      }
+
+      .checkmark {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 2rem;
+        border: 3px solid #2ed8a7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+      }
+
+      .checkmark svg {
+        width: 40px;
+        height: 40px;
+        fill: #2ed8a7;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(46, 216, 167, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(46, 216, 167, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(46, 216, 167, 0);
+        }
+      }
+
+      .approval-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #2ed8a7;
+        text-shadow: 0 0 10px rgba(46, 216, 167, 0.5);
+      }
+
+      .approval-message {
+        font-size: 1.2rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        margin-bottom: 2rem !important;
+        font-style: normal !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
+        line-height: 1.6 !important;
+      }
+
+      .approval-steps {
+        background: rgba(46, 216, 167, 0.1);
+        border: 1px solid rgba(46, 216, 167, 0.3);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 0;
+        text-align: left;
+      }
+
+      .approval-steps h3 {
+        color: #2ed8a7;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+
+      .approval-steps ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .approval-steps li {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        position: relative;
+        font-style: normal;
+        text-transform: none;
+        letter-spacing: normal;
+      }
+
+      .approval-steps li:before {
+        content: "✓";
+        color: #2ed8a7;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+      }
+
       .socials {
         position: absolute;
         bottom: 100px;
@@ -345,19 +491,53 @@
     </div>
 
     <div class="container">
-      <h1>Join the <span class="highlight">BAPT</span> Beta</h1>
-      <p style="font-style: normal; text-transform: none; letter-spacing: normal; margin-bottom: 2rem; max-width: 600px;">
-        Get exclusive early access to the next generation platform for turning ideas into reality. Limited spots available.
-      </p>
-      <button class="launch-btn" onclick="requestBetaAccess()" style="font-size: 1.1rem; padding: 15px 30px; margin-top: 1rem;">
-        <svg class="x-icon" viewBox="0 0 24 24">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-        Request Beta Access
-      </button>
-      <p style="font-size: 0.9rem; margin-top: 1rem; color: rgba(255, 255, 255, 0.6);">
-        Connect with X • Admin approval required • Coming to Aptos
-      </p>
+      <!-- Sign-up Screen -->
+      <div id="signup-screen" class="signup-screen">
+        <div class="beta-content">
+          <h1>Join the <span class="highlight">BAPT</span> Beta</h1>
+          <p class="beta-description">
+            Get exclusive early access to the next generation platform for turning ideas into reality. Limited spots available for innovative creators and visionaries.
+          </p>
+          <button class="beta-cta-btn" onclick="requestBetaAccess()">
+            <svg class="x-icon" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            Request Beta Access
+          </button>
+          <p class="beta-details">
+            Connect with X • Admin approval required • Coming to Aptos
+          </p>
+        </div>
+      </div>
+
+      <!-- Approval Waiting Screen -->
+      <div id="approval-screen" class="approval-screen">
+        <div class="beta-content">
+          <div class="checkmark">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
+            </svg>
+          </div>
+          <h2 class="approval-title">Request Submitted!</h2>
+          <p class="approval-message">
+            Thank you for your interest in BAPT Beta! Your access request has been submitted successfully.
+          </p>
+          
+          <div class="approval-steps">
+            <h3>What happens next?</h3>
+            <ul>
+              <li>Your X account has been linked to your beta request</li>
+              <li>Our team will review your application within 2-3 business days</li>
+              <li>You'll receive a direct message on X with your approval status</li>
+              <li>Approved users will get exclusive beta access and onboarding</li>
+            </ul>
+          </div>
+          
+          <p class="approval-message" style="margin-top: 2rem; font-size: 1rem;">
+            Follow us on <strong style="color: #2ed8a7;">@BAPTApp</strong> for updates and beta announcements!
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="socials">
@@ -371,7 +551,25 @@
 
     <script>
       function requestBetaAccess() {
-        alert("To enable X authentication and beta access requests, please connect your project to Supabase using the green Supabase button in the top right of the Lovable interface!");
+        // Hide signup screen and show approval screen
+        document.getElementById('signup-screen').classList.add('hidden');
+        document.getElementById('approval-screen').classList.add('active');
+        
+        // Update navbar button to show "Access Requested"
+        const navBtn = document.querySelector('.navbar .launch-btn');
+        navBtn.innerHTML = `
+          <svg class="x-icon" viewBox="0 0 24 24">
+            <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
+          </svg>
+          Access Requested
+        `;
+        navBtn.style.background = 'rgba(46, 216, 167, 0.3)';
+        navBtn.style.color = '#2ed8a7';
+        navBtn.style.cursor = 'default';
+        navBtn.onclick = null;
+        
+        // Note: In production, this would integrate with Supabase for X OAuth
+        console.log("Beta access requested - would integrate with Supabase X OAuth");
       }
     </script>
   </body>
