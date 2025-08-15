@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 import wolfLogo from "@/assets/wolf-logo.png";
 
 const Navigation = () => {
@@ -16,8 +17,17 @@ const Navigation = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <Button variant="social" size="sm">
-              Beta Access
+            <Button 
+              variant="hero" 
+              size="sm"
+              className="gap-2"
+              onClick={() => {
+                // This will require Supabase integration for X OAuth
+                alert("Please connect to Supabase first to enable X authentication!");
+              }}
+            >
+              <X className="w-4 h-4" />
+              Sign up with X
             </Button>
           </div>
         </div>
